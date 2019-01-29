@@ -210,7 +210,8 @@ public class AddScoring extends AppCompatActivity {
     public void finishAndWrite() {
 
         //TODO: Make sure miscInfo doesn't contain '|'
-        String output = String.format(Locale.US, "%1$s|%2$d|%3$s|%4$b|%5$b|%6$b|%7$b|%8$s|%9$s|%10$b", teamName, teamNumber, miscInfo, landing.isChecked(), sampling.isChecked(), marker.isChecked(), parking.isChecked(), mineralsLander.getText().toString(), mineralsDepot.getText().toString(), latching.isChecked());
+        String output = String.format(Locale.US, "%1$s|%2$d|%3$s|%4$b|%5$b|%6$b|%7$b|%8$s|%9$s|%10$b|~", teamName, teamNumber, miscInfo, landing.isChecked(), sampling.isChecked(), marker.isChecked(), parking.isChecked(), mineralsLander.getText().toString(), mineralsDepot.getText().toString(), latching.isChecked());
+        Log.d("AHHHHHHHHHHHHHHH",output);
 
         FileOutputStream outputStream;
         try {

@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">FTC Rover Ruckus Scouting App</string>
-    <string name="title">FTC Rover Ruckus Scouting App</string>
     <string name="author">Created by Jasper Jag Robotics FTC 11419</string>
-    <string name="newTeam">ADD A NEW TEAM</string>
-    <string name="browseTeams">BROWSE TEAMS</string>
-    <string name="newTeamTitle">Add a new Team</string>
+    <string name="browseTeams">Browse Teams</string>
+    <string name="newTeam">Add a new Team</string>
     <string name="addTeamHint1">Team Name</string>
     <string name="addTeamHint2">Team Number</string>
     <string name="addTeamHint3">Misc Info</string>
@@ -25,4 +23,7 @@
     <string name="decrease">-</string>
     <string name="increase">+</string>
     <string name="done">Done</string>
+    <string name="number">#</string>
+    <string name="name">Name</string>
+    <string name="points">Pts.</string>
 </resources>
