@@ -20,7 +20,9 @@
     <string name="autonomousPark">Parking</string>
     <string name="mineralsLander">Minerals In Lander</string>
     <string name="mineralsDepot">Minerals In Depot</string>
+    <string name="latching">Latching</string>
     <string name="zero">0</string>
     <string name="decrease">-</string>
     <string name="increase">+</string>
+    <string name="done">Done</string>
 </resources>

@@ -6,19 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".AddScoring">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/addScore"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
                 android:text="@string/addScoreTitle"
                 android:textAlignment="center"
                 android:textSize="36sp" />
@@ -26,132 +24,120 @@
             <TextView
                 android:id="@+id/autonomous"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center"
                 android:text="@string/autonomous"
                 android:textAlignment="center"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline27"
+                <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.7" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline26"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.3" />
+                    android:layout_weight="3" />
 
                 <ToggleButton
                     android:id="@+id/landingButton"
                     android:layout_width="0dp"
-                    android:layout_height="51dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
                     android:textOff="@string/autonomousLand"
-                    android:textOn="@string/autonomousLand"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline27"
-                    app:layout_constraintStart_toStartOf="@+id/guideline26" />
+                    android:textOn="@string/autonomousLand" />
 
-            </android.support.constraint.ConstraintLayout>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline29"
+                <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.7" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline28"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.3" />
+                    android:layout_weight="3" />
 
                 <ToggleButton
                     android:id="@+id/samplingButton"
                     android:layout_width="0dp"
-                    android:layout_height="51dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
                     android:textOff="@string/autonomousSample"
-                    android:textOn="@string/autonomousSample"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline29"
-                    app:layout_constraintStart_toStartOf="@+id/guideline28" />
+                    android:textOn="@string/autonomousSample" />
 
-            </android.support.constraint.ConstraintLayout>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline31"
+                <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.7" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline30"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.3" />
+                    android:layout_weight="3" />
 
                 <ToggleButton
                     android:id="@+id/markerButton"
                     android:layout_width="0dp"
-                    android:layout_height="51dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
                     android:textOff="@string/autonomousMarker"
-                    android:textOn="@string/autonomousMarker"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline31"
-                    app:layout_constraintStart_toStartOf="@+id/guideline30" />
+                    android:textOn="@string/autonomousMarker" />
 
-            </android.support.constraint.ConstraintLayout>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
 
-            <android.support.constraint.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
 
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline33"
+                <Space
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.7" />
-
-                <android.support.constraint.Guideline
-                    android:id="@+id/guideline32"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.3" />
+                    android:layout_weight="3" />
 
                 <ToggleButton
                     android:id="@+id/parkingButton"
                     android:layout_width="0dp"
-                    android:layout_height="51dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
                     android:textOff="@string/autonomousPark"
-                    android:textOn="@string/autonomousPark"
-                    app:layout_constraintEnd_toStartOf="@+id/guideline33"
-                    app:layout_constraintStart_toStartOf="@+id/guideline32" />
+                    android:textOn="@string/autonomousPark" />
 
-            </android.support.constraint.ConstraintLayout>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/teleOp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center"
                 android:text="@string/teleOp"
                 android:textAlignment="center"
                 android:textSize="24sp"
@@ -160,14 +146,17 @@
             <TextView
                 android:id="@+id/mineralsLander"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="@string/mineralsLander"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <Space
@@ -208,14 +197,17 @@
             <TextView
                 android:id="@+id/mineralsDepot"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="@string/mineralsDepot"
                 android:textAlignment="center"
                 android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:orientation="horizontal">
 
                 <Space
@@ -256,13 +248,83 @@
             <TextView
                 android:id="@+id/totalScore"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center"
                 android:text="@string/addScoreTotal"
                 android:textAlignment="center"
                 android:textSize="24sp" />
 
-        </LinearLayout>
+            <TextView
+                android:id="@+id/endGame"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="@string/endGame"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
-    </ScrollView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+
+                <ToggleButton
+                    android:id="@+id/latchingButton"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:textOff="@string/latching"
+                    android:textOn="@string/latching" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+
+                <Button
+                    android:id="@+id/done"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:text="@string/done" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight=".5" />
+
+        </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

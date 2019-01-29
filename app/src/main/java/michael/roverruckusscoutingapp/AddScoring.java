@@ -1,5 +1,7 @@
 package michael.roverruckusscoutingapp;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,9 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Locale;
-
-import michael.roverruckusscoutingapp.R;
 
 public class AddScoring extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class AddScoring extends AppCompatActivity {
     public ToggleButton sampling;
     public ToggleButton marker;
     public ToggleButton parking;
+    public ToggleButton latching;
     public Button mineralsLanderIncrease;
     public Button mineralsLanderDecrease;
     public Button mineralsDepotIncrease;
@@ -26,6 +29,11 @@ public class AddScoring extends AppCompatActivity {
     public TextView mineralsLander;
     public TextView mineralsDepot;
     public TextView totalScore;
+    public String teamName;
+    public int teamNumber;
+    public String miscInfo;
+    public boolean newTeam;
+    public Button done;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +44,7 @@ public class AddScoring extends AppCompatActivity {
         sampling = findViewById(R.id.samplingButton);
         marker = findViewById(R.id.markerButton);
         parking = findViewById(R.id.parkingButton);
+        latching = findViewById(R.id.latchingButton);
         mineralsLanderIncrease = findViewById(R.id.mineralsLanderIncrease);
         mineralsLanderDecrease = findViewById(R.id.mineralsLanderDecrease);
         mineralsDepotIncrease = findViewById(R.id.mineralsDepotIncrease);
@@ -43,6 +52,7 @@ public class AddScoring extends AppCompatActivity {
         mineralsLander = findViewById(R.id.mineralsLanderCount);
         mineralsDepot = findViewById(R.id.mineralsDepotCount);
         totalScore = findViewById(R.id.totalScore);
+        done = findViewById(R.id.done);
 
         landing.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +79,13 @@ public class AddScoring extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 calculateScore("parking");
+            }
+        });
+
+        latching.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                calculateScore("latching");
             }
         });
 
@@ -108,7 +125,24 @@ public class AddScoring extends AppCompatActivity {
             }
         });
 
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finishAndWrite();
+            }
+        });
+
         totalScore.setText(getString(R.string.addScoreTotal,Integer.toString(score)));
+
+        Intent intent = getIntent();
+        teamName = intent.getStringExtra("teamName");
+        teamNumber = intent.getIntExtra("teamNumber",0);
+        miscInfo = intent.getStringExtra("miscInfo");
+        newTeam = intent.getBooleanExtra("newTeam",true);
+
+        if (newTeam) {
+            //TODO: Add team values
+        }
 
     }
 
@@ -159,12 +193,36 @@ public class AddScoring extends AppCompatActivity {
             case "mineralsDepotDecrease":
                 score -= 2;
                 break;
-
-
-
+            case "latching":
+                if (latching.isChecked()) {
+                    score += 50;
+                }
+                else {
+                    score -= 50;
+                }
+                break;
         }
 
         totalScore.setText(getString(R.string.addScoreTotal,Integer.toString(score)));
+
+    }
+
+    public void finishAndWrite() {
+
+        //TODO: Make sure miscInfo doesn't contain '|'
+        String output = String.format(Locale.US, "%1$s|%2$d|%3$s|%4$b|%5$b|%6$b|%7$b|%8$s|%9$s|%10$b", teamName, teamNumber, miscInfo, landing.isChecked(), sampling.isChecked(), marker.isChecked(), parking.isChecked(), mineralsLander.getText().toString(), mineralsDepot.getText().toString(), latching.isChecked());
+
+        FileOutputStream outputStream;
+        try {
+            outputStream = openFileOutput("teams", Context.MODE_PRIVATE);
+            outputStream.write(output.getBytes());
+            outputStream.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        startActivity(new Intent(AddScoring.this, MainActivity.class));
 
     }
 
