@@ -3,6 +3,7 @@
     <string name="author">Created by Jasper Jag Robotics FTC 11419</string>
     <string name="browseTeams">Browse Teams</string>
     <string name="newTeam">Add a new Team</string>
+    <string name="settings">Settings</string>
     <string name="addTeamHint1">Team Name</string>
     <string name="addTeamHint2">Team Number</string>
     <string name="addTeamHint3">Misc Info</string>
@@ -26,4 +27,13 @@
     <string name="number">#</string>
     <string name="name">Name</string>
     <string name="points">Pts.</string>
+    <string name="endGamePrompt">Pick an endgame position</string>
+    <string name="deleteTeams">Delete all teams</string>
+
+    <string-array name="endGameStates">
+        <item>Nothing</item>
+        <item>Latching</item>
+        <item>Partially in Crater</item>
+        <item>Fully in Crater</item>
+    </string-array>
 </resources>

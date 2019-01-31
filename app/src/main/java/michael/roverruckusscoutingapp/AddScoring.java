@@ -6,8 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.io.File;
@@ -21,7 +25,7 @@ public class AddScoring extends AppCompatActivity {
     public ToggleButton sampling;
     public ToggleButton marker;
     public ToggleButton parking;
-    public ToggleButton latching;
+    public Spinner endGameSpinner;
     public Button mineralsLanderIncrease;
     public Button mineralsLanderDecrease;
     public Button mineralsDepotIncrease;
@@ -30,6 +34,7 @@ public class AddScoring extends AppCompatActivity {
     public TextView mineralsDepot;
     public TextView totalScore;
     public String teamName;
+    public String previousEndGameValue = "Nothing";
     public int teamNumber;
     public String miscInfo;
     public boolean newTeam;
@@ -44,7 +49,7 @@ public class AddScoring extends AppCompatActivity {
         sampling = findViewById(R.id.samplingButton);
         marker = findViewById(R.id.markerButton);
         parking = findViewById(R.id.parkingButton);
-        latching = findViewById(R.id.latchingButton);
+        endGameSpinner = findViewById(R.id.endGameSpinner);
         mineralsLanderIncrease = findViewById(R.id.mineralsLanderIncrease);
         mineralsLanderDecrease = findViewById(R.id.mineralsLanderDecrease);
         mineralsDepotIncrease = findViewById(R.id.mineralsDepotIncrease);
@@ -82,10 +87,15 @@ public class AddScoring extends AppCompatActivity {
             }
         });
 
-        latching.setOnClickListener(new View.OnClickListener() {
+        endGameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                calculateScore("latching");
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                calculateScore("endGameSpinner");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                calculateScore("endGameSpinner");
             }
         });
 
@@ -133,6 +143,11 @@ public class AddScoring extends AppCompatActivity {
         });
 
         totalScore.setText(getString(R.string.addScoreTotal,Integer.toString(score)));
+
+        endGameSpinner.setPrompt(getString(R.string.endGamePrompt));
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.endGameStates, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        endGameSpinner.setAdapter(adapter);
 
         Intent intent = getIntent();
         teamName = intent.getStringExtra("teamName");
@@ -193,13 +208,34 @@ public class AddScoring extends AppCompatActivity {
             case "mineralsDepotDecrease":
                 score -= 2;
                 break;
-            case "latching":
-                if (latching.isChecked()) {
-                    score += 50;
+            case "endGameSpinner":
+                switch (previousEndGameValue) {
+                    case "Latching":
+                        score -= 50;
+                        break;
+                    case "Partially in Crater":
+                        score -= 15;
+                        break;
+                    case "Fully in Crater":
+                        score -= 25;
+                        break;
+                    default:
+                        break;
                 }
-                else {
-                    score -= 50;
+                switch (endGameSpinner.getSelectedItem().toString()) {
+                    case "Latching":
+                        score += 50;
+                        break;
+                    case "Partially in Crater":
+                        score += 15;
+                        break;
+                    case "Fully in Crater":
+                        score += 25;
+                        break;
+                    default:
+                        break;
                 }
+                previousEndGameValue = endGameSpinner.getSelectedItem().toString();
                 break;
         }
 
@@ -210,14 +246,19 @@ public class AddScoring extends AppCompatActivity {
     public void finishAndWrite() {
 
         //TODO: Make sure miscInfo doesn't contain '|'
-        String output = String.format(Locale.US, "%1$s|%2$d|%3$s|%4$b|%5$b|%6$b|%7$b|%8$s|%9$s|%10$b|~", teamName, teamNumber, miscInfo, landing.isChecked(), sampling.isChecked(), marker.isChecked(), parking.isChecked(), mineralsLander.getText().toString(), mineralsDepot.getText().toString(), latching.isChecked());
-        Log.d("AHHHHHHHHHHHHHHH",output);
+        String output = String.format(Locale.US, "%1$s|%2$d|%3$s|%4$b|%5$b|%6$b|%7$b|%8$s|%9$s|%10$s|~", teamName, teamNumber, miscInfo, landing.isChecked(), sampling.isChecked(), marker.isChecked(), parking.isChecked(), mineralsLander.getText().toString(), mineralsDepot.getText().toString(), endGameSpinner.getSelectedItem().toString());
 
         FileOutputStream outputStream;
         try {
-            outputStream = openFileOutput("teams", Context.MODE_PRIVATE);
+            outputStream = openFileOutput("teams", Context.MODE_APPEND);
             outputStream.write(output.getBytes());
             outputStream.close();
+
+            Context context = getApplicationContext();
+            CharSequence text = "Successfully added " + teamName;
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
         }
         catch (Exception e) {
             e.printStackTrace();

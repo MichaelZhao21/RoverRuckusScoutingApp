@@ -10,8 +10,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import michael.roverruckusscoutingapp.R;
-
 public class AddTeam extends AppCompatActivity {
 
     @Override

@@ -34,6 +34,7 @@
             android:orientation="vertical" >
 
             <LinearLayout
+                android:id="@+id/teamLabel"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:orientation="horizontal">
@@ -65,14 +66,6 @@
                     android:text="@string/points"
                     android:textStyle="bold" />
             </LinearLayout>
-
-            <Button
-                android:id="@+id/help"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Button"
-                tools:layout_editor_absoluteX="96dp"
-                tools:layout_editor_absoluteY="173dp" />
 
         </LinearLayout>
     </ScrollView>

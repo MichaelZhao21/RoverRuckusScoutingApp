@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button newTeam = findViewById(R.id.newTeam);
         Button browseTeams = findViewById(R.id.browseTeams);
+        Button settings = findViewById(R.id.settings);
 
         newTeam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, BrowseTeams.class));
             }
         });
+
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Settings.class));
+            }
+        });
+
+
     }
 }
 

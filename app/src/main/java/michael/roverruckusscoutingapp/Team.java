@@ -15,7 +15,8 @@ public class Team {
     public boolean parking;
     public int mineralsLander;
     public int mineralsDepot;
-    public boolean latching;
+    public String endGame;
+    public int score = 0;
 
     public Team() {
         this.teamName = "";
@@ -27,10 +28,10 @@ public class Team {
         this.parking = false;
         this.mineralsLander = 0;
         this.mineralsDepot = 0;
-        this.latching = false;
+        this.endGame = "";
     }
 
-    public Team(String teamName, int teamNumber, String miscInfo, boolean landing, boolean sampling, boolean marker, boolean parking, int mineralsLander, int mineralsDepot, boolean latching) {
+    public Team(String teamName, int teamNumber, String miscInfo, boolean landing, boolean sampling, boolean marker, boolean parking, int mineralsLander, int mineralsDepot, String endGame) {
         this.teamName = teamName;
         this.teamNumber = teamNumber;
         this.miscInfo = miscInfo;
@@ -40,7 +41,7 @@ public class Team {
         this.parking = parking;
         this.mineralsLander = mineralsLander;
         this.mineralsDepot = mineralsDepot;
-        this.latching = latching;
+        this.endGame = endGame;
     }
 
     public void logTeam() {
@@ -55,7 +56,31 @@ public class Team {
         Log.d("Team",String.format(Locale.US, "Parking: %b", parking));
         Log.d("Team",String.format(Locale.US, "Minerals in Lander: %d", mineralsLander));
         Log.d("Team",String.format(Locale.US, "Minerals in Depot: %d", mineralsDepot));
-        Log.d("Team",String.format(Locale.US, "Latching: %b", latching));
+        Log.d("Team",String.format(Locale.US, "endGame: %s", endGame));
         Log.d("Team","---------------------------");
     }
+
+    public int calcScore() {
+        score += landing ? 50 : 0;
+        score += sampling ? 25 : 0;
+        score += marker ? 15 : 0;
+        score += parking ? 10 : 0;
+        score += mineralsLander * 5;
+        score += mineralsDepot * 2;
+        switch (endGame) {
+            case "Latching":
+                score += 50;
+                break;
+            case "Partially in Crater":
+                score += 15;
+                break;
+            case "Fully in Crater":
+                score += 25;
+                break;
+            default:
+                break;
+        }
+        return score;
+    }
+
 }
